@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { HardwareImage, PageHero, SiteFooter, SiteHeader } from "../components";
 import { catalogProducts, productFamilies, products, productsPage } from "../data";
+import { sitePath } from "../paths";
 
 export const metadata: Metadata = productsPage.metadata;
 
@@ -57,9 +58,9 @@ export default function ProductsPage() {
                   <small>{product.bus}</small>
                 </div>
                 {detailSlugs.has(product.slug) ? (
-                  <a href={`/products/${product.slug}`}>{labels.detailLink}</a>
+                  <a href={sitePath(`/products/${product.slug}`)}>{labels.detailLink}</a>
                 ) : (
-                  <a href="/contact">{labels.inquiryLink}</a>
+                  <a href={sitePath("/contact")}>{labels.inquiryLink}</a>
                 )}
               </article>
             ))}

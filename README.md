@@ -76,6 +76,16 @@ git push
 
 推送后，阿里云 ESA Pages 会自动重新构建并更新线上站点。绑定自定义域名后，别人打开的就是这个正式域名。
 
+## GitHub Pages 临时公开预览
+
+这个仓库也配置了 GitHub Pages 自动发布。推送到 GitHub 的 `main` 分支后，可以临时把这个地址发给别人看：
+
+```text
+https://hanyu1207.github.io/juncheng-technology/
+```
+
+GitHub Pages 适合临时预览，不需要 token，也不需要别人装开发环境。后续正式官网仍建议使用自定义域名。
+
 ## 代码目录
 
 - `app/`：页面渲染代码，平时不用改

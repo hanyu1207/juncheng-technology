@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PageHero, SiteFooter, SiteHeader } from "../components";
 import { supportPage } from "../data";
+import { sitePath } from "../paths";
 
 export const metadata: Metadata = supportPage.metadata;
 
@@ -19,7 +20,7 @@ export default function SupportPage() {
             <article key={resource.title}>
               <strong>{resource.title}</strong>
               <p>{resource.text}</p>
-              <a href={resource.linkHref}>{resource.linkLabel}</a>
+              <a href={sitePath(resource.linkHref)}>{resource.linkLabel}</a>
             </article>
           ))}
         </div>

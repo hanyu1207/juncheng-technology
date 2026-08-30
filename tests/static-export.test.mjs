@@ -16,8 +16,10 @@ test("package scripts target standard Next.js static export", async () => {
 
   assert.equal(packageJson.scripts.dev, "next dev");
   assert.equal(packageJson.scripts.build, "next build");
+  assert.equal(packageJson.scripts["build:github-pages"], "node scripts/build-github-pages.mjs");
   assert.equal(packageJson.scripts.preview, "serve out");
   assert.equal(packageJson.scripts.test, "next build && node --test tests/*.test.mjs");
+  assert.equal(packageJson.scripts["test:github-pages"], "node scripts/test-github-pages.mjs");
   assert.equal(packageJson.packageManager, "pnpm@11.19.0");
   assert.equal(packageJson.dependencies.next, "16.2.6");
   assert.equal(packageJson.devDependencies.serve, "14.2.5");
@@ -43,6 +45,10 @@ test("static hosting configuration points every platform at out", async () => {
   assert.match(netlify, /publish = "out"/);
   assert.match(workflow, /pnpm run lint/);
   assert.match(workflow, /pnpm test/);
+  assert.match(workflow, /NEXT_PUBLIC_BASE_PATH: \/juncheng-technology/);
+  assert.match(workflow, /NEXT_PUBLIC_SITE_URL: https:\/\/hanyu1207\.github\.io\/juncheng-technology/);
+  assert.match(workflow, /actions\/upload-pages-artifact@v3/);
+  assert.match(workflow, /actions\/deploy-pages@v4/);
 });
 
 test("Next static export emits browsable HTML files", async () => {

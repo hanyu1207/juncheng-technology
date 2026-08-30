@@ -9,9 +9,11 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:github-pages": "node scripts/build-github-pages.mjs",
     "start": "serve out",
     "preview": "serve out",
     "test": "next build && node --test tests/*.test.mjs",
+    "test:github-pages": "node scripts/test-github-pages.mjs",
     "lint": "eslint . --ignore-pattern out --ignore-pattern .next"
   },
   "dependencies": {

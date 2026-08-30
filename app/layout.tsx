@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { site } from "./data";
+import { sitePath } from "./paths";
 import "./globals.css";
 
 const siteTitle = site.metadata.title;
@@ -11,8 +12,8 @@ export const metadata: Metadata = {
   title: siteTitle,
   description: siteDescription,
   icons: {
-    icon: site.assets.favicon,
-    shortcut: site.assets.favicon,
+    icon: sitePath(site.assets.favicon),
+    shortcut: sitePath(site.assets.favicon),
   },
   openGraph: {
     title: siteTitle,

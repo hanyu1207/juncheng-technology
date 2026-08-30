@@ -77,6 +77,16 @@ git push
 
 4. 阿里云 ESA Pages 自动拉取新代码、执行构建，并更新线上站点。
 
+## GitHub Pages 临时预览
+
+仓库已经配置 GitHub Pages 自动部署。推送到 `main` 分支后，GitHub Actions 会构建带仓库子路径的静态站点，并发布到：
+
+```text
+https://hanyu1207.github.io/juncheng-technology/
+```
+
+这个地址适合先发给别人看页面效果，不需要阿里云预览 token。它不是最终企业官网域名，正式对外仍建议绑定自定义域名。
+
 ## 上线后更新站点地址
 
 拿到正式对外使用的自定义域名后，把 `content/site.json` 里的 `url` 改成正式网址。这个值用于网页的 SEO 和分享卡片地址。

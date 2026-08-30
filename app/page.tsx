@@ -1,5 +1,6 @@
 import { HardwareImage, SiteFooter, SiteHeader } from "./components";
 import { catalogProducts, home, solutions } from "./data";
+import { sitePath } from "./paths";
 
 export default function Home() {
   const featuredProducts = catalogProducts.filter((product) =>
@@ -19,7 +20,7 @@ export default function Home() {
             {home.hero.actions.map((action) => (
               <a
                 className={action.style === "primary" ? "primary-button" : "secondary-button"}
-                href={action.href}
+                href={sitePath(action.href)}
                 key={action.label}
               >
                 {action.label}
@@ -51,13 +52,17 @@ export default function Home() {
             <p className="eyebrow">{home.featuredProducts.eyebrow}</p>
             <h2>{home.featuredProducts.title}</h2>
           </div>
-          <a className="text-link" href={home.featuredProducts.linkHref}>
+          <a className="text-link" href={sitePath(home.featuredProducts.linkHref)}>
             {home.featuredProducts.linkLabel}
           </a>
         </div>
         <div className="product-grid">
           {featuredProducts.map((product) => (
-            <a className="product-card" href={`/products/${product.slug}`} key={product.code}>
+            <a
+              className="product-card"
+              href={sitePath(`/products/${product.slug}`)}
+              key={product.code}
+            >
               <span>{product.code}</span>
               <strong>{product.name}</strong>
               <p>{product.summary}</p>
@@ -72,7 +77,7 @@ export default function Home() {
             <p className="eyebrow">{home.solutions.eyebrow}</p>
             <h2>{home.solutions.title}</h2>
           </div>
-          <a className="text-link" href={home.solutions.linkHref}>
+          <a className="text-link" href={sitePath(home.solutions.linkHref)}>
             {home.solutions.linkLabel}
           </a>
         </div>
@@ -98,7 +103,7 @@ export default function Home() {
               className={
                 action.style === "primary" ? "primary-button" : "secondary-button light"
               }
-              href={action.href}
+              href={sitePath(action.href)}
               key={action.label}
             >
               {action.label}

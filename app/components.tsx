@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { footerColumns, navItems, productsPage, site, type DetailedProduct } from "./data";
+import { sitePath } from "./paths";
 
 export function SiteHeader() {
   return (
@@ -13,12 +14,12 @@ export function SiteHeader() {
       </Link>
       <nav className="main-nav" aria-label={site.labels.mainNavigation}>
         {navItems.map((item) => (
-          <a href={item.href} key={item.href}>
+          <a href={sitePath(item.href)} key={item.href}>
             {item.label}
           </a>
         ))}
       </nav>
-      <a className="nav-action" href={site.headerAction.href}>
+      <a className="nav-action" href={sitePath(site.headerAction.href)}>
         {site.headerAction.label}
       </a>
     </header>
@@ -43,7 +44,7 @@ export function SiteFooter() {
           <strong>{column.title}</strong>
           {column.links
             ? column.links.map((link) => (
-                <a href={link.href} key={link.label}>
+                <a href={sitePath(link.href)} key={link.label}>
                   {link.label}
                 </a>
               ))
@@ -76,7 +77,7 @@ export function HardwareImage({ label }: { label: string }) {
   return (
     <figure className="image-frame">
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={site.assets.hardwareImage} alt={label} />
+      <img src={sitePath(site.assets.hardwareImage)} alt={label} />
       <figcaption>{label}</figcaption>
     </figure>
   );
@@ -143,10 +144,10 @@ export function ProductDetail({ product }: { product: DetailedProduct }) {
           <h2>{detailPage.ctaTitle}</h2>
         </div>
         <div className="hero-actions">
-          <a className="primary-button" href={detailPage.manualLinkHref}>
+          <a className="primary-button" href={sitePath(detailPage.manualLinkHref)}>
             {detailPage.manualLinkLabel}
           </a>
-          <a className="secondary-button light" href={detailPage.inquiryLinkHref}>
+          <a className="secondary-button light" href={sitePath(detailPage.inquiryLinkHref)}>
             {detailPage.inquiryLinkLabel}
           </a>
         </div>
