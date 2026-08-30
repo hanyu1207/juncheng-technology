@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readFile, readdir } from "node:fs/promises";
+import { readFile, readdir, stat } from "node:fs/promises";
 import path from "node:path";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
@@ -9,25 +9,11 @@ const contentRoot = new URL("../content/", import.meta.url);
 const appRootPath = fileURLToPath(appRoot);
 const contentRootPath = fileURLToPath(contentRoot);
 
-async function render(pathname = "/") {
-  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
-  workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
-  const { default: worker } = await import(workerUrl.href);
-
-  return worker.fetch(
-    new Request(`http://localhost${pathname}`, {
-      headers: { accept: "text/html" },
-    }),
-    {
-      ASSETS: {
-        fetch: async () => new Response("Not found", { status: 404 }),
-      },
-    },
-    {
-      waitUntil() {},
-      passThroughOnException() {},
-    },
-  );
+async function readExportedHtml(pathname = "/") {
+  const normalized = pathname.replace(/^\/|\/$/g, "");
+  const filePath = normalized ? `out/${normalized}/index.html` : "out/index.html";
+  await stat(filePath);
+  return readFile(filePath, "utf8");
 }
 
 async function listFiles(dir, extensions) {
@@ -45,24 +31,20 @@ async function listFiles(dir, extensions) {
   return files.flat();
 }
 
-test("server-renders the Juncheng Technology homepage", async () => {
+test("exports the Juncheng Technology homepage as static HTML", async () => {
   const [site, home] = await Promise.all([
     readFile(new URL("site.json", contentRoot), "utf8").then(JSON.parse),
     readFile(new URL("home.json", contentRoot), "utf8").then(JSON.parse),
   ]);
 
-  const response = await render();
-  assert.equal(response.status, 200);
-  assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
-
-  const html = await response.text();
+  const html = await readExportedHtml();
   assert.match(html, new RegExp(site.brand.name));
   assert.match(html, new RegExp(home.hero.title));
   assert.match(html, new RegExp(home.featuredProducts.title));
   assert.doesNotMatch(html, /Your site is taking shape|Building your site/);
 });
 
-test("server-renders product details from content data", async () => {
+test("exports product details from content data as static HTML", async () => {
   const productsPage = await readFile(new URL("products.json", contentRoot), "utf8").then(
     JSON.parse,
   );
@@ -70,10 +52,7 @@ test("server-renders product details from content data", async () => {
 
   assert.ok(product);
 
-  const response = await render(`/products/${product.slug}`);
-  assert.equal(response.status, 200);
-
-  const html = await response.text();
+  const html = await readExportedHtml(`/products/${product.slug}`);
   assert.ok(html.includes(product.name));
   assert.ok(html.includes(product.code));
   assert.ok(html.includes(productsPage.detailPage.featureTitle));
