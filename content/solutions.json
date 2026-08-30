@@ -1,0 +1,39 @@
+{
+  "metadata": {
+    "title": "解决方案 | 钧程科技",
+    "description": "钧程科技提供 AI 芯片、车载多媒体 SoC、5G 通信基带和存储控制器的原型验证硬件组合方案。"
+  },
+  "pageHero": {
+    "eyebrow": "Solutions",
+    "title": "解决方案",
+    "description": "围绕不同芯片验证场景，组合高速子卡、内存外设、桥接模块和测试夹具，缩短平台搭建周期。"
+  },
+  "diagramLabels": ["FPGA 载板", "高速子卡", "测试夹具", "参考 IP"],
+  "defaultBullets": [
+    "推荐硬件清单按协议、连接器和线缆长度展开。",
+    "系统架构图覆盖数据通路、控制通路和参考时钟链路。",
+    "支持验证优势、风险点和 bring-up 顺序说明。"
+  ],
+  "items": [
+    {
+      "title": "AI 大算力芯片原型",
+      "combo": "PCIe Gen5 + DDR4 / LPDDR4 + QSFP28",
+      "value": "快速验证主机互连、外部存储和高速光口数据通路。"
+    },
+    {
+      "title": "车载多媒体 SoC",
+      "combo": "HDMI 2.1 + MIPI D-PHY + ARM 互连子卡",
+      "value": "覆盖摄像头输入、座舱显示输出和调试控制链路。"
+    },
+    {
+      "title": "5G 通信基带",
+      "combo": "QSFP28 + SGMII / RGMII + PGT+ 高速线缆",
+      "value": "建立高速 SerDes、光口和以太网管理链路验证环境。"
+    },
+    {
+      "title": "存储控制器",
+      "combo": "SATA3 + EMMC5.1 + DDR4 SO-DIMM",
+      "value": "支持存储协议栈、控制器训练和压力测试。"
+    }
+  ]
+}

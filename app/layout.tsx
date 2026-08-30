@@ -1,10 +1,7 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
+import { site } from "./data";
 import "./globals.css";
-
-const siteTitle = "钧程科技 | FPGA 原型验证硬件与高速接口模块";
-const siteDescription =
-  "钧程科技提供硬件仿真平台、原型验证子卡、高速接口转换模块、测试夹具与配套参考设计。";
 
 export async function generateMetadata(): Promise<Metadata> {
   const requestHeaders = await headers();
@@ -12,25 +9,27 @@ export async function generateMetadata(): Promise<Metadata> {
   const protocol =
     requestHeaders.get("x-forwarded-proto") ?? (host?.includes("localhost") ? "http" : "https");
   const metadataBase = new URL(`${protocol}://${host ?? "localhost:3000"}`);
+  const siteTitle = site.metadata.title;
+  const siteDescription = site.metadata.description;
 
   return {
     metadataBase,
     title: siteTitle,
     description: siteDescription,
     icons: {
-      icon: "/favicon.svg",
-      shortcut: "/favicon.svg",
+      icon: site.assets.favicon,
+      shortcut: site.assets.favicon,
     },
     openGraph: {
       title: siteTitle,
       description: siteDescription,
-      images: [{ url: "/og.png", width: 1200, height: 630 }],
+      images: [{ url: site.assets.ogImage, width: 1200, height: 630 }],
     },
     twitter: {
       card: "summary_large_image",
       title: siteTitle,
       description: siteDescription,
-      images: ["/og.png"],
+      images: [site.assets.ogImage],
     },
   };
 }

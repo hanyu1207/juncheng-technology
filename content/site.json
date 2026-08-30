@@ -1,0 +1,61 @@
+{
+  "metadata": {
+    "title": "钧程科技 | FPGA 原型验证硬件与高速接口模块",
+    "description": "钧程科技提供硬件仿真平台、原型验证子卡、高速接口转换模块、测试夹具与配套参考设计。"
+  },
+  "brand": {
+    "name": "钧程科技",
+    "englishName": "Juncheng Technology",
+    "mark": "JC",
+    "footerSubtitle": "FPGA 原型验证硬件"
+  },
+  "assets": {
+    "hardwareImage": "/hardware-lab.png",
+    "ogImage": "/og.png",
+    "favicon": "/favicon.svg"
+  },
+  "navigation": [
+    { "href": "/", "label": "首页" },
+    { "href": "/products", "label": "产品中心" },
+    { "href": "/solutions", "label": "解决方案" },
+    { "href": "/support", "label": "技术资源" },
+    { "href": "/about", "label": "关于我们" },
+    { "href": "/contact", "label": "联系我们" }
+  ],
+  "labels": {
+    "mainNavigation": "主导航"
+  },
+  "headerAction": {
+    "label": "技术咨询",
+    "href": "/contact"
+  },
+  "footer": {
+    "description": "专注高速互连硬件、原型验证子卡、接口转换模块与测试夹具，服务 AI 芯片、车规 SoC、通信基带、多媒体和存储芯片团队。",
+    "columns": [
+      {
+        "title": "产品中心",
+        "links": [
+          { "label": "PGT+ 高速协议子卡", "href": "/products" },
+          { "label": "Prodigy+ 外设子卡", "href": "/products" },
+          { "label": "总线转换桥接模块", "href": "/products" }
+        ]
+      },
+      {
+        "title": "技术支持",
+        "links": [
+          { "label": "数据手册下载", "href": "/support" },
+          { "label": "Verilog 参考 IP", "href": "/support" },
+          { "label": "申请样品", "href": "/contact" }
+        ]
+      },
+      {
+        "title": "联系钧程",
+        "items": [
+          "sales@juncheng-tech.example",
+          "400-JC-FPGA",
+          "中国 · 上海 / 深圳"
+        ]
+      }
+    ]
+  }
+}

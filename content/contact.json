@@ -1,0 +1,46 @@
+{
+  "metadata": {
+    "title": "联系我们 | 钧程科技",
+    "description": "联系钧程科技销售与技术支持，提交产品型号、需求数量、行业和样品申请信息。"
+  },
+  "pageHero": {
+    "eyebrow": "Contact",
+    "title": "联系我们",
+    "description": "提交协议、载板、线缆和数量需求，钧程科技会帮助确认子卡组合、连接器兼容性和验证路径。"
+  },
+  "contactCard": {
+    "title": "销售与技术支持",
+    "items": [
+      "销售热线：400-JC-FPGA",
+      "技术邮箱：support@juncheng-tech.example",
+      "公司地址：中国 · 上海 / 深圳",
+      "样品申请：提供项目阶段、目标协议和预期验证平台。"
+    ]
+  },
+  "form": {
+    "fields": {
+      "product": {
+        "label": "产品型号",
+        "placeholder": "例如 H-JC-PCIe5-8X"
+      },
+      "quantity": {
+        "label": "需求数量",
+        "placeholder": "例如 2 套"
+      },
+      "industry": {
+        "label": "所属行业",
+        "placeholder": "请选择",
+        "options": ["AI 芯片", "车载 SoC", "通信基带", "存储控制器", "多媒体显示"]
+      },
+      "contact": {
+        "label": "联系方式",
+        "placeholder": "邮箱或电话"
+      },
+      "message": {
+        "label": "需求描述",
+        "placeholder": "请描述载板型号、目标协议、线缆长度、样品或量产计划"
+      }
+    },
+    "buttonLabel": "提交询价"
+  }
+}
