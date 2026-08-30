@@ -21,7 +21,8 @@
     { "href": "/solutions", "label": "解决方案" },
     { "href": "/support", "label": "技术资源" },
     { "href": "/about", "label": "加入我们" },
-    { "href": "/contact", "label": "联系我们" }
+    { "href": "/contact", "label": "联系我们" },
+    { "href": "/contact", "label": "关于我们" }
   ],
   "labels": {
     "mainNavigation": "主导航"
