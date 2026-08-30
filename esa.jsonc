@@ -1,0 +1,8 @@
+{
+  "name": "juncheng-technology",
+  "installCommand": "pnpm install",
+  "buildCommand": "pnpm run build",
+  "assets": {
+    "directory": "./out"
+  }
+}
