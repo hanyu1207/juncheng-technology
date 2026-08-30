@@ -1,8 +1,9 @@
 {
   "name": "juncheng-technology",
-  "installCommand": "pnpm install",
+  "installCommand": "pnpm install --frozen-lockfile",
   "buildCommand": "pnpm run build",
   "assets": {
-    "directory": "./out"
+    "directory": "./out",
+    "notFoundStrategy": "404Page"
   }
 }

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { navItems, productsPage, site, type DetailedProduct } from "./data";
+import { footerColumns, navItems, productsPage, site, type DetailedProduct } from "./data";
 
 export function SiteHeader() {
   return (
@@ -38,10 +38,10 @@ export function SiteFooter() {
         </Link>
         <p>{site.footer.description}</p>
       </div>
-      {site.footer.columns.map((column) => (
+      {footerColumns.map((column) => (
         <div key={column.title}>
           <strong>{column.title}</strong>
-          {"links" in column
+          {column.links
             ? column.links.map((link) => (
                 <a href={link.href} key={link.label}>
                   {link.label}

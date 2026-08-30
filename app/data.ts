@@ -29,6 +29,23 @@ export type DetailedProduct = Product & {
   applications: string[];
 };
 
+export type FooterLink = {
+  label: string;
+  href: string;
+};
+
+export type FooterColumn =
+  | {
+      title: string;
+      links: FooterLink[];
+      items?: never;
+    }
+  | {
+      title: string;
+      items: string[];
+      links?: never;
+    };
+
 export const site = siteContent;
 export const home = homeContent;
 export const productsPage = productsContent;
@@ -38,6 +55,7 @@ export const aboutPage = aboutContent;
 export const contactPage = contactContent;
 
 export const navItems = siteContent.navigation;
+export const footerColumns = siteContent.footer.columns as FooterColumn[];
 export const productFamilies = productsContent.families;
 export const catalogProducts = productsContent.products as Product[];
 export const products = catalogProducts.filter(isDetailedProduct);

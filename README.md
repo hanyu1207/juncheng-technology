@@ -1,6 +1,8 @@
 # 钧程科技官网
 
-工程已迁移到 `E:\work\web`。后续日常改官网内容，优先修改 `content` 文件夹里的 JSON 文件，不需要碰 `app` 里的页面代码。
+这是钧程科技官网源码，当前工程位置是 `E:\work\web`。
+
+网站已经整理为标准 Next.js 静态导出项目，适合部署到阿里云 ESA Pages。后续日常改官网内容，优先修改 `content` 文件夹里的 JSON 文件，不需要碰 `app` 里的页面代码。
 
 ## 内容入口
 
@@ -16,11 +18,11 @@
 
 ## 本地预览
 
-需要 Node.js `>=22.13.0`。
+需要 Node.js `>=22.13.0`，建议使用 Node.js 24。
 
 ```bash
-npm install
-npm run dev
+pnpm install --frozen-lockfile
+pnpm dev
 ```
 
 启动后访问命令行里显示的本地地址，通常是 `http://localhost:3000`。
@@ -28,23 +30,56 @@ npm run dev
 ## 构建检查
 
 ```bash
-npm run build
+pnpm run lint
+pnpm test
 ```
 
-构建通过后，说明 JSON 格式和页面生成没有明显问题。
+`pnpm test` 会先执行 `next build`，并检查静态导出的 HTML 页面是否生成到 `out` 目录。
 
-## 远程发布
+## 阿里云 ESA Pages 发布
 
-线上站点仍然是：
+仓库根目录已经包含 `esa.jsonc`，阿里云 ESA Pages 可以按这个配置构建：
 
-```text
-https://juncheng-technology.richard-z-wang.chatgpt.site/
+```json
+{
+  "name": "juncheng-technology",
+  "installCommand": "pnpm install --frozen-lockfile",
+  "buildCommand": "pnpm run build",
+  "assets": {
+    "directory": "./out",
+    "notFoundStrategy": "404Page"
+  }
+}
 ```
 
-修改内容文件后，需要重新构建并发布，线上网站才会更新。发布相关配置保存在 `.openai/hosting.json`。
+如果阿里云控制台需要手动填写，使用这些值：
+
+- 安装命令：`pnpm install --frozen-lockfile`
+- 构建命令：`pnpm run build`
+- 输出目录：`out`
+- 根目录：仓库根目录
+- Node.js：建议 24，最低 `>=22.13.0`
+
+你发的 `https://esa.console.aliyun.com/.../buildStatus/...` 是阿里云后台构建状态页，不是别人访问官网的网址。部署成功后，ESA Pages 会生成公共访问域名，但这个域名更适合预览测试，阿里云可能要求带 token 访问。要让其他人长期直接打开，建议在 ESA Pages 里绑定自己的正式域名，然后把这个自定义域名发给别人。
+
+## 日常更新流程
+
+1. 修改 `content` 目录里的 JSON 文件。
+2. 本地运行 `pnpm test`。
+3. 提交并推送到连接 ESA Pages 的代码仓库：
+
+```bash
+git add content
+git commit -m "content: update website copy"
+git push
+```
+
+推送后，阿里云 ESA Pages 会自动重新构建并更新线上站点。绑定自定义域名后，别人打开的就是这个正式域名。
 
 ## 代码目录
 
 - `app/`：页面渲染代码，平时不用改
+- `content/`：官网文案和产品数据，日常主要修改这里
 - `public/`：图片、图标等静态资源
-- `.openai/hosting.json`：Sites 项目绑定配置
+- `out/`：构建产物，由 `pnpm run build` 自动生成，不需要手动编辑
+- `esa.jsonc`：阿里云 ESA Pages 构建配置

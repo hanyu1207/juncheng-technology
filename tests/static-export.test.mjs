@@ -27,10 +27,16 @@ test("package scripts target standard Next.js static export", async () => {
 });
 
 test("static hosting configuration points every platform at out", async () => {
+  const esa = JSON.parse(await readFile("esa.jsonc", "utf8"));
   const vercel = JSON.parse(await readFile("vercel.json", "utf8"));
   const netlify = await readFile("netlify.toml", "utf8");
   const workflow = await readFile(".github/workflows/ci.yml", "utf8");
 
+  assert.equal(esa.name, "juncheng-technology");
+  assert.equal(esa.installCommand, "pnpm install --frozen-lockfile");
+  assert.equal(esa.buildCommand, "pnpm run build");
+  assert.equal(esa.assets.directory, "./out");
+  assert.equal(esa.assets.notFoundStrategy, "404Page");
   assert.equal(vercel.buildCommand, "pnpm run build");
   assert.equal(vercel.outputDirectory, "out");
   assert.match(netlify, /command = "pnpm run build"/);
